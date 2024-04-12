@@ -1,5 +1,5 @@
 # Wybierz obraz bazowy z Node.js
-FROM node:16 as build-stage
+FROM node:16
 
 # Ustaw katalog roboczy w kontenerze
 WORKDIR /app
@@ -11,17 +11,12 @@ RUN npm install
 # Kopiuj pozostałe pliki źródłowe
 COPY ./ ./
 
-# Zbuduj aplikację
+# Zbuduj aplikację (opcjonalnie, w zależności od potrzeb)
 RUN npm run build
 
-# Faza produkcyjna z użyciem serwera nginx
-FROM nginx:stable-alpine as production-stage
+# Otwórz port 3000
+EXPOSE 3000
 
-# Kopiuj zbudowane pliki do serwera nginx
-COPY --from=build-stage /app/build/ /usr/share/nginx/html
-
-# Otwórz port 80
-EXPOSE 80
-
-# Uruchom nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Uruchom aplikację
+CMD ["npm", "start"]
+# CMD ["npm", "run", "dev"]
