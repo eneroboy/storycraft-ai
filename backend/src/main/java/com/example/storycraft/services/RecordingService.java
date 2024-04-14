@@ -27,4 +27,8 @@ public class RecordingService {
         Optional<Recording> record = recordingRepository.findById(recordId);
         return record.orElse(null);
     }
+
+    public Object getRecordsByUserId(Long userId) {
+        return recordingRepository.findByUserId(userId);
+    }
 }

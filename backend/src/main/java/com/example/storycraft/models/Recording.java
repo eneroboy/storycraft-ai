@@ -21,8 +21,9 @@ public class Recording {
     @Column(name = "number_of_words_in_record")
     private Integer numberOfWordsInRecord;
 
+    // TODO: 14.04.2024 Change to align with database type
     @Column(name = "record_duration")
-    private Duration recordDuration;
+    private Integer recordDuration;
 
     @Column(name = "record_file_path")
     private String recordFilePath;
@@ -50,7 +51,7 @@ public class Recording {
         return numberOfWordsInRecord;
     }
 
-    public Duration getRecordDuration() {
+    public Integer getRecordDuration() {
         return recordDuration;
     }
 
@@ -82,7 +83,7 @@ public class Recording {
         this.numberOfWordsInRecord = numberOfWordsInRecord;
     }
 
-    public void setRecordDuration(Duration recordDuration) {
+    public void setRecordDuration(Integer recordDuration) {
         this.recordDuration = recordDuration;
     }
 

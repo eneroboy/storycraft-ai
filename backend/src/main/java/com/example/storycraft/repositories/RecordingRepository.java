@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RecordingRepository extends JpaRepository<Recording, Integer> {
+    Object findByUserId(Long userId);
 }
