@@ -1,0 +1,87 @@
+body, html {
+    /* height: 100%; */
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white; /* Light background color */
+}
+
+.loading-container {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-page {
+    margin: 0 auto; /* Center the form */
+    padding: 40px;
+    background: white; /* White background for the form */
+    /* border-radius: 20px; /* Rounded corners for the form */
+   /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); Subtle shadow for the form */
+    min-width: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form contents */
+    text-align: center;
+}
+
+.logo {
+    margin-bottom: 150px; /* Space between logo and inputs */
+}
+
+.image-side {
+    display: none; /* Initially don't display the image-side */
+}
+
+.loading-side {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.progress-bar-container {
+    width: 100%; /* Pełna szerokość kontenera loading-page */
+    background-color: #EBBFD0; /* Tło paska postępu, jasnoszare */
+    border-radius: 15px; /* Zaokrąglenie rogów paska ładowania */
+    overflow: hidden; /* Zapobiega wyświetlaniu się paska poza border-radius */
+    margin-top: 50px;
+}
+
+.progress-bar {
+    width: 0; /* Początkowa szerokość paska postępu */
+    height: 15px; /* Wysokość paska ładowania */
+    background: linear-gradient(to right, #AE0143 0%, #AE0143 100%); /* Gradient jak na obrazku */
+    animation: loadingAnimation 3s linear forwards; /* Animacja trwająca 4 sekundy */
+}
+
+@keyframes loadingAnimation {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@media screen and (min-width: 769px) {
+    .loading-container {
+        justify-content: flex-end; /* Align the login form to the right */
+    }
+
+    .image-side {
+        display: block; /* Display the image-side on desktop */
+        width: 50%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    .image-loading-page {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .loading-page {
+        width: 50%;
+        padding: 20px;
+    }
+}

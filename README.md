@@ -18,11 +18,11 @@ StoryCraft is an innovative application that allows parents to create personaliz
 - Access to a modern web browser.
 - Compatibility with HTML5, CSS3, and JavaScript for the best user experience.
 
-## GIFs showing main views of app
+<!-- ## GIFs showing main views of app
 
 ![Desktop](./readme_files/story-craft-ai-desktop.gif)
 
-![Mobile](./readme_files/story-craft-ai-mobile.gif)
+![Mobile](./readme_files/story-craft-ai-mobile.gif) -->
 
 ## Installation
 
