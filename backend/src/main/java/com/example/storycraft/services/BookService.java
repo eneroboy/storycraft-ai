@@ -25,16 +25,9 @@ public class BookService {
 
     // Aktualizacja istniejącej książki
     @Transactional
-    public Book updateBook(Long bookId, String title, String author, String categories, String description, String coverPath, String language, String filePath) {
-        Book book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found"));
-        book.setBookName(title);
-        book.setBookAuthor(author);
-        book.setBookCategories(categories);
-        book.setBookDescription(description);
-        book.setBookPhotoPath(coverPath);
-        book.setBookLanguage(language);
-        book.setBookFilePath(filePath);
-        return bookRepository.save(book);
+    public Book updateBook(Long bookId, Book book) {
+        bookRepository.editBook(bookId, book.getBookName(), book.getBookAuthor(), book.getBookCategories(), book.getBookDescription(), book.getBookPhotoPath(), book.getBookLanguage(), book.getBookFilePath());
+        return bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found"));
     }
 
     // Usuwanie książki

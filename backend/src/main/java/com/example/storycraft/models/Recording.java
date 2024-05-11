@@ -1,6 +1,8 @@
 package com.example.storycraft.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -21,9 +23,8 @@ public class Recording {
     @Column(name = "number_of_words_in_record")
     private Integer numberOfWordsInRecord;
 
-    // TODO: 14.04.2024 Change to align with database type
     @Column(name = "record_duration")
-    private Integer recordDuration;
+    private String recordDuration;
 
     @Column(name = "record_file_path")
     private String recordFilePath;
@@ -51,7 +52,7 @@ public class Recording {
         return numberOfWordsInRecord;
     }
 
-    public Integer getRecordDuration() {
+    public String getRecordDuration() {
         return recordDuration;
     }
 
@@ -83,7 +84,7 @@ public class Recording {
         this.numberOfWordsInRecord = numberOfWordsInRecord;
     }
 
-    public void setRecordDuration(Integer recordDuration) {
+    public void setRecordDuration(String recordDuration) {
         this.recordDuration = recordDuration;
     }
 
