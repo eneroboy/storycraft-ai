@@ -1,6 +1,7 @@
 package com.example.storycraft.models;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -27,7 +28,13 @@ public class User {
     @Column(name = "photo_path", length = 255)
     private String photoPath;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<UserRole> userRoles;
+
     // Getters
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
     public Integer getId() {
         return id;
     }
@@ -57,6 +64,10 @@ public class User {
     }
 
     // Setters
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
     public void setId(Integer id) {
         this.id = id;
     }
