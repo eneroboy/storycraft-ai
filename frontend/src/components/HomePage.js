@@ -1,8 +1,24 @@
 // src/components/HomePage.js
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/index.css';  // Specific CSS for the Home page
 
 function HomePage() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const redirectTo = token ? '/books' : '/login';
+
+        const timer = setTimeout(() => {
+            navigate(redirectTo);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [navigate]);
+
+
     return (
         <div className="loading-container">
             <div className="image-side">

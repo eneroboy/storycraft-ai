@@ -119,11 +119,12 @@ body, html {
     position: relative;
 }
 
-.toggle-password {
+.toggle-password-login {
     position: absolute;
-    right: 5px; /* Dostosuj do rozmiarów inputu */
+    right: 5%; /* Dostosuj do rozmiarów inputu */
     top: 50%;
-    transform: translateY(-30%);
+    margin-right: 10px;
+    transform: translateY(-20%);
     border: none;
     background: none;
     cursor: pointer;

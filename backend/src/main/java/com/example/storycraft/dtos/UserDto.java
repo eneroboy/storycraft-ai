@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -23,8 +24,15 @@ public class UserDto {
     private String photoPath;
     private String token;
     private Set<String> roles;
-
+    //TODO: UserRoles not Strings
     public Set<String> getRoles() {
         return roles;
+    }
+
+    public void addRole(String role) {
+        if (roles == null) {
+            roles = new HashSet<>();
+        }
+        roles.add(role);
     }
 }

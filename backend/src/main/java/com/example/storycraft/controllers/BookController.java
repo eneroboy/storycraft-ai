@@ -1,5 +1,6 @@
 package com.example.storycraft.controllers;
 
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.http.HttpStatus;
 import com.example.storycraft.models.Book;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,10 @@ public class BookController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateBook(@PathVariable Long id, @RequestBody Book book) {
         return ResponseEntity.ok(bookService.updateBook(id, book));
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> getBooksByUserId(@PathVariable Long id) {
+        return ResponseEntity.ok(bookService.getBooksByUserId(id));
     }
 }

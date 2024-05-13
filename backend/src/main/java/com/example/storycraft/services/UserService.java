@@ -5,6 +5,7 @@ import com.example.storycraft.mappers.UserMapper;
 import com.example.storycraft.models.Credentials;
 import com.example.storycraft.models.SignUp;
 import com.example.storycraft.models.User;
+import com.example.storycraft.repositories.RoleRepository;
 import com.example.storycraft.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
@@ -21,6 +22,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final UserMapper userMapper;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -87,7 +89,9 @@ public class UserService {
         }
 
 
+//        userDto.addRole(roleRepository.findById(2L));
         User user = userMapper.userDtoToUser(userDto);
+//        user.setRole(roleRepository.findById(2L).get());
 //        user.setRole(UserRole.normal);
 
         user.setPassword(bCryptPasswordEncoder.encode(new String(userDto.getPassword())));

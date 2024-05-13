@@ -96,4 +96,8 @@ public class User {
         this.photoPath = photoPath;
     }
 
+//    public void addRole(String role) {
+//        userRoles.add(role);
+//    }
+
 }

@@ -44,6 +44,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Username already exists");
         }
         UserDto createdUser = userService.register(user);
+        createdUser.addRole("user");
         createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
     }

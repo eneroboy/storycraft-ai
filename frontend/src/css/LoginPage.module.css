@@ -1,5 +1,5 @@
-* {
-    /* height: 100%; */
+body, html {
+    height: 100%;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     background-color: white;
@@ -13,7 +13,7 @@
 }
 
 .login-form {
-    margin: auto 100px; /* Center the form */
+    margin: 0 100px; /* Center the form */
     padding: 40px;
     background: white; /* White background for the form */
     width: 370px;
@@ -22,17 +22,20 @@
     flex-direction: column;
     align-items: center; /* Center the form contents */
     text-align: center;
-    height: auto;
+}
+
+.logo {
+    margin-bottom: 20px; /* Space between logo and inputs */
 }
 
 .email-input, .password-input {
-    width: 85%; /* Adjust width to be full within the form */
+    width: 100%; /* Adjust width to be full within the form */
     padding: 16px 20px;
     margin: 15px auto 5px; /* Align to center */
     border: 2px solid #C8C8C8; /* Border for the inputs */
     border-radius: 100px; /* Rounded corners for inputs */
     background: #FFFFFF; /* Light background for inputs */
-    height: auto;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .email-input:focus, .password-input:focus {
@@ -43,7 +46,6 @@
 
 .btn {
     padding: 16px 20px;
-    height: auto;
     width: 100%;
     margin: 15px 0;
     border: none;
@@ -51,6 +53,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .btn.primary {
@@ -62,6 +65,44 @@
     background-color: transparent;
     border: 2px solid #AE0143;
     color: #AE0143; /* Darker shade for hover state */
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: #AE0143; /* Same as primary button */
+    border: 2px solid #AE0143; /* Border color same as text */
+}
+
+.btn.secondary:active  {
+    background-color: #AE0143; /* Fill color on hover */
+    color: white;
+}
+
+.divider {
+    text-align: center;
+    position: relative;
+    line-height: 1; /* Aby kontrolować odległość tekstu od linii */
+    color: #bbb;
+    margin: 2px 0;
+}
+
+.divider:before,
+.divider:after {
+    content: '';
+    background-color: #bbb; /* Kolor linii */
+    height: 1px; /* Wysokość linii */
+    position: absolute;
+    top: 50%; /* Wyrównanie do środka względem wysokości tekstu */
+    width: 40%; /* Długość linii */
+    transform: translateY(-50%); /* Precyzyjne wyrównanie do środka */
+}
+
+.divider:before {
+    left: 5%; /* Mała przerwa od lewej krawędzi */
+}
+
+.divider:after {
+    right: 5%; /* Mała przerwa od prawej krawędzi */
 }
 
 .image-side {
@@ -76,93 +117,18 @@
 
 .password-container {
     position: relative;
-    height: auto;
 }
 
 .toggle-password {
     position: absolute;
-    right: 5%; /* Dostosuj do rozmiarów inputu */
-    top: 25%;
-    transform: translateY(-25%);
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: #C8C8C8;
-    height: auto;
-}
-
-.toggle-password-repeat {
-    position: absolute;
-    right: 5%; /* Dostosuj do rozmiarów inputu */
-    top: 75%;
-    transform: translateY(-30%);
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: #C8C8C8;
-    height: auto;
-}
-
-.profile-photo-uploader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: auto;
-  }
-  
-  .file-input {
-    display: none; /* Hide the actual input */
-  }
-  
-  .file-label {
-    cursor: pointer;
-    text-align: center;
-  }
-  
-   .dashed-circle {
-    border: 2px dashed #E8BACC;
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    margin-bottom: 20px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Zapewnia, że obrazek nie wyjdzie poza okrąg */
-  }
-  
-  .dashed-circle img {
-    width: 100%; /* Zapewnia, że obrazek wypełni okrąg */
-    border-radius: 50%;
-    height: 100%;
-    display: none; /* Początkowo ukryj obrazek */
-  }
-  
-  .dashed-circle img.visible {
-    display: block; /* Pokaż obrazek po wczytaniu */
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  .upload-text {
-    color: #E8BACC; /* Match your primary color */
-    font-family: 'Montserrat', sans-serif;
-    position: absolute;
+    right: 5px; /* Dostosuj do rozmiarów inputu */
     top: 50%;
-    transform: translateY(-30%);
-  }
-  
-  .photo-text {
-    color: #AE0143; /* Match your primary color */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem; /* Smaller text size for the photo text */
-    font-weight: bold;
-  }
-  
+    transform: translateY(-20%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #C8C8C8;
+}
 
 @media screen and (min-width: 769px) {
     .login-container {
@@ -185,7 +151,7 @@
     }
 
     .login-form {
-        width: 60%;
+        width: 100%;
         padding: 20;
     }
 }

@@ -25,9 +25,8 @@ body, html {
     text-align: center;
 }
 
-.logo {
-    margin-bottom: 150px; /* Space between logo and inputs */
-}
+/* .logo {
+    margin-bottom: 150px; /* Space between logo and inputs */ 
 
 .image-side {
     display: none; /* Initially don't display the image-side */

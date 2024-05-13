@@ -31,11 +31,44 @@ const RegisterPage = () => {
         }
     }
 
-    const handleSubmit = () => {
-        console.log("Submitting:", { name, email, password, repeatPassword, profileImage });
-        // Here you would usually handle the form submission request to your backend
-        // For example, using Axios or Fetch API
+    const togglePasswordRepeat = () => {
+        const passwordInputRepeat = document.getElementById('password-input-repeat');
+        const togglePasswordRepeat = document.getElementById('toggle-password-repeat');
+        if (passwordInputRepeat.type === 'password') {
+            passwordInputRepeat.type = 'text';
+            togglePasswordRepeat.innerHTML = 'visibility_off';
+        } else {
+            passwordInputRepeat.type = 'password';
+            togglePasswordRepeat.innerHTML = 'visibility';
+        }
+    }
+
+    // RegisterPage.js
+    const handleSubmit = async () => {
+        const response = await fetch('http://localhost:8080/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            })
+        });
+        const data = await response.json();
+        
+        if (response.ok) {
+            const token = data.token;
+
+            localStorage.setItem('token', token);
+            console.log("Registration successful");
+            window.location.href = '/books';
+        } else {
+            console.error("Registration failed:", data.message);
+        }
     };
+
 
     return (
         <div className="login-container">
@@ -48,7 +81,7 @@ const RegisterPage = () => {
                         <input type="file" id="file-input" className="file-input" accept="image/*" onChange={handleImageChange} />
                         <label htmlFor="file-input" className="file-label">
                             <div className="dashed-circle">
-                                {profileImage ? <img id="profile-image" src={profileImage} alt="Profile" className="profile-photo" /> : <span className="upload-text">Upload photo</span>}
+                                {profileImage ? <img id="profile-image" src={profileImage} alt="Profile" className="profile-photo visible" /> : <span className="upload-text">Upload photo</span>}
                             </div>
                             <span className="photo-text">Your profile photo</span>
                         </label>
@@ -59,7 +92,7 @@ const RegisterPage = () => {
                         <input type="password" id="password-input" placeholder="Password" className="password-input" onChange={e => setPassword(e.target.value)} />
                         <button type="button" id="toggle-password"  className="toggle-password material-symbols-outlined" onClick={togglePassword}>visibility</button>
                         <input type="password" id="password-input-repeat" placeholder="Repeat password" className="password-input" onChange={e => setRepeatPassword(e.target.value)} />
-                        <button type="button" className="toggle-password material-symbols-outlined" onClick={togglePassword}>visibility</button>
+                        <button type="button" id="toggle-password-repeat" className="toggle-password-repeat material-symbols-outlined" onClick={togglePasswordRepeat}>visibility</button>
                     </div>
                     <button type="button" className="btn primary" onClick={handleSubmit}>Create account</button>
                 </div>
