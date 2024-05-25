@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
 import '../css/books.css'; // Ensure you import the CSS
 import axios from 'axios';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 function getUserIdFromToken(token) {
     try {
@@ -21,6 +22,7 @@ const BooksPage = () => {
     const [books, setBooks] = useState([]);
     const [showVoiceModelPopup, setShowVoiceModelPopup] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
+    const [selectedVoiceModel, setSelectedVoiceModel] = useState(null);
 
     
 
@@ -41,11 +43,12 @@ const BooksPage = () => {
 
         const fetchVoiceModels = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/voiceModels', {
+                const response = await axios.get(`${apiUrl}/voiceModels`, {
                     headers: headers
                 });
                 const voicemodels = response.data._embedded.voiceModels;
                 setVoiceModels(voicemodels);
+                // console.log('Voice models:', voicemodels);
             } catch (error) {
                 console.error('Error fetching voice models:', error);
             }
@@ -54,14 +57,14 @@ const BooksPage = () => {
         fetchVoiceModels();
 
 
-        // fetch('http://localhost:8080/api/voicemodels', { method: 'GET', headers: headers })
+        // fetch(`${apiUrl}/voicemodels`, { method: 'GET', headers: headers })
         //     .then(response => response.json())
         //     .then(data => {
         //         setVoiceModels(data.voicemodels.map(voicemodel => JSON.parse(voicemodel)));
         //     })
         //     .catch(error => console.error('Error:', error));
 
-        fetch('http://localhost:8080/api/books/user/' + userId, { method: 'GET', headers: headers })
+        fetch(`${apiUrl}/books/user/` + userId, { method: 'GET', headers: headers })
             .then(response => response.json())
             .then(setBooks)
             .catch(error => console.error('Error:', error));
@@ -73,14 +76,16 @@ const BooksPage = () => {
 
     const handleListen = (book) => {
         setSelectedBook(book);
+        console.log("Selected book:", book);
         setShowVoiceModelPopup(true);
     };
 
     const handleVoiceModelSelect = (voicemodel) => {
-        localStorage.setItem('voicemodel_path', voicemodel.voice_file_path);
-        localStorage.setItem('book_title', selectedBook.title);
-        localStorage.setItem('book_description', selectedBook.description);
-        localStorage.setItem('book_cover_path', selectedBook.cover_path);
+        localStorage.setItem('voicemodel_path', voicemodel.voiceFilePath);
+        localStorage.setItem('book_title', selectedBook.bookName);
+        localStorage.setItem('book_description', selectedBook.bookDescription);
+        localStorage.setItem('book_cover_path', selectedBook.bookPhotoPath);
+        console.log("Selected voice model:", voicemodel);
         window.location.href = '/listen';
     };
 

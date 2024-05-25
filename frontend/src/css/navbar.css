@@ -31,8 +31,8 @@
         text-align: center;
     }
 
-    #active-page {
-        color: #AE0143;
+    .active-page {
+        color: #AE0143 !important;
     }
 
     .desktop-navbar .nav-links li a {

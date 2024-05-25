@@ -2,13 +2,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/navbar.css'; // Assuming your CSS is in this file
 
+
 const Navbar = () => {
+    const apiUrl = process.env.REACT_APP_API_URL;
     return (
         <div className="navbar-container">
             {/* Navbar for Desktop */}
             <nav className="navbar desktop-navbar">
                 <ul className="nav-links">
-                    <li><NavLink to="/" className={({ isActive }) => isActive ? "active-page" : ""}><img src="http://localhost:8080/api/data/images/storycraft.png" alt="Logo" className="logo" /></NavLink></li>
+                    <li><NavLink to="/" className={({ isActive }) => isActive ? "active-page" : ""}><img src={`${apiUrl}/data/images/storycraft.png`} alt="Logo" className="logo" /></NavLink></li>
                     <li><NavLink to="/books" className={({ isActive }) => isActive ? "active-page" : ""}>Books</NavLink></li>
                     <li><NavLink to="/listen" className={({ isActive }) => isActive ? "active-page" : ""}>Listen</NavLink></li>
                     <li><NavLink to="/add" className={({ isActive }) => isActive ? "active-page" : ""}>Add</NavLink></li>
@@ -30,5 +32,6 @@ const Navbar = () => {
         </div>
     );
 };
+
 
 export default Navbar;

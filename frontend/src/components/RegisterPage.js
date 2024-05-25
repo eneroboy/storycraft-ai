@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../css/register.css';  // Make sure to import your CSS styles
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const RegisterPage = () => {
     const [name, setName] = useState('');
@@ -45,7 +46,7 @@ const RegisterPage = () => {
 
     // RegisterPage.js
     const handleSubmit = async () => {
-        const response = await fetch('http://localhost:8080/api/register', {
+        const response = await fetch(`${apiUrl}/data/images/storycraft.png/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

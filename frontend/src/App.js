@@ -6,6 +6,7 @@ import BooksPage from "./components/BooksPage";
 import HomePage from "./components/HomePage";
 import MainLayout from "./components/MainLayout";
 import ProtectedRoute from './components/ProtectedRoute';
+import ListenPage from "./components/ListenPage";
 
 //import './css/template.css';  // Global CSS for the whole app
 
@@ -23,6 +24,11 @@ function App() {
                     <Route path="books" element={
                       <ProtectedRoute>
                         <BooksPage />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="listen" element={
+                      <ProtectedRoute>
+                        <ListenPage />
                       </ProtectedRoute>
                     } />
                   </Routes>
