@@ -9,6 +9,7 @@ import com.example.storycraft.services.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +38,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Valid SignUp user) {
+    public ResponseEntity<?> register(@ModelAttribute @Valid SignUp user) {
         System.out.println(user.getPassword());
         Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser.isPresent()) {

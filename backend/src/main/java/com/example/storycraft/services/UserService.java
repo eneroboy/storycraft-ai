@@ -14,6 +14,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,17 +97,41 @@ public class UserService {
             throw new AppException("Login already exists", HttpStatus.BAD_REQUEST);
         }
 
-
-//        userDto.addRole(roleRepository.findById(2L));
         User user = userMapper.userDtoToUser(userDto);
-//        user.setRole(roleRepository.findById(2L).get());
-//        user.setRole(UserRole.normal);
-
         user.setPassword(bCryptPasswordEncoder.encode(new String(userDto.getPassword())));
 
-        // Save the user
-        User savedUser = userRepository.save(user);
+        if (userDto.getPhoto() != null && !userDto.getPhoto().isEmpty()) {
+            String photoPath = savePhoto(userDto.getPhoto());
+            user.setPhotoPath("http://localhost:8080/api/data/images/" + photoPath);
+        }
 
+        User savedUser = userRepository.save(user);
         return userMapper.userToUserDto(savedUser);
     }
+
+    private String savePhoto(MultipartFile photo) {
+        try {
+            String originalFilename = photo.getOriginalFilename();
+            String extension = "";
+            int dotIndex = originalFilename.lastIndexOf('.');
+            if (dotIndex > 0) {
+                extension = originalFilename.substring(dotIndex);
+            }
+            String randomString = generateRandomString();
+            String filename = randomString + extension;
+            Path path = Paths.get("./backend/images/" + filename);
+            Files.copy(photo.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            return filename;
+        } catch (IOException e) {
+            throw new AppException("Failed to save photo", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private String generateRandomString() {
+        SecureRandom random = new SecureRandom();
+        byte[] bytes = new byte[16];
+        random.nextBytes(bytes);
+        return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
+    }
+
 }

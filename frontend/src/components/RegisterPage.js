@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../css/register.css';  // Make sure to import your CSS styles
+import axios from 'axios';
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const RegisterPage = () => {
@@ -7,16 +8,19 @@ const RegisterPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
-    const [profileImage, setProfileImage] = useState('');
+    const [profileImage, setProfileImage] = useState(null);
+    const [profileImageUrl, setProfileImageUrl] = useState('');
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+            setProfileImage(file);
             const reader = new FileReader();
             reader.onload = (e) => {
-                setProfileImage(e.target.result);
+                setProfileImageUrl(e.target.result);
             };
             reader.readAsDataURL(file);
+
         }
     };
 
@@ -44,29 +48,59 @@ const RegisterPage = () => {
         }
     }
 
-    // RegisterPage.js
-    const handleSubmit = async () => {
-        const response = await fetch(`${apiUrl}/data/images/storycraft.png/register`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                password
-            })
-        });
-        const data = await response.json();
+    // // RegisterPage.js
+    // const handleSubmit = async () => {
+    //     const response = await fetch(`${apiUrl}/register`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             name,
+    //             email,
+    //             password
+    //         })
+    //     });
+    //     const data = await response.json();
         
-        if (response.ok) {
-            const token = data.token;
+    //     if (response.ok) {
+    //         const token = data.token;
 
-            localStorage.setItem('token', token);
-            console.log("Registration successful");
-            window.location.href = '/books';
-        } else {
-            console.error("Registration failed:", data.message);
+    //         localStorage.setItem('token', token);
+    //         console.log("Registration successful");
+    //         window.location.href = '/books';
+    //     } else {
+    //         console.error("Registration failed:", data.message);
+    //     }
+    // };
+
+    const handleSubmit = async () => {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('password', password);
+        if (profileImage) {
+            formData.append('photo', profileImage);
+        }
+
+        try {
+            const response = await axios.post(`${apiUrl}/register`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            const data = response.data;
+            if (response.status === 201) {
+                const token = data.token;
+                localStorage.setItem('token', token);
+                console.log("Registration successful");
+                window.location.href = '/books';
+            } else {
+                console.error("Registration failed:", data.message);
+            }
+        } catch (error) {
+            console.error("There was an error!", error);
         }
     };
 
@@ -82,7 +116,7 @@ const RegisterPage = () => {
                         <input type="file" id="file-input" className="file-input" accept="image/*" onChange={handleImageChange} />
                         <label htmlFor="file-input" className="file-label">
                             <div className="dashed-circle">
-                                {profileImage ? <img id="profile-image" src={profileImage} alt="Profile" className="profile-photo visible" /> : <span className="upload-text">Upload photo</span>}
+                                {profileImageUrl ? <img id="profile-image" src={profileImageUrl} alt="Profile" className="profile-photo visible" /> : <span className="upload-text">Upload photo</span>}
                             </div>
                             <span className="photo-text">Your profile photo</span>
                         </label>
