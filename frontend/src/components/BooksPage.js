@@ -94,7 +94,7 @@ const BooksPage = () => {
     };
 
     return (
-        <div className="content">
+        <div className="content-books">
             <h1>Books</h1>
             <div className="button-panel">
                 <button className="button left-button">#Animals</button>

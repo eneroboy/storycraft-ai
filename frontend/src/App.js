@@ -7,8 +7,7 @@ import HomePage from "./components/HomePage";
 import MainLayout from "./components/MainLayout";
 import ProtectedRoute from './components/ProtectedRoute';
 import ListenPage from "./components/ListenPage";
-
-//import './css/template.css';  // Global CSS for the whole app
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
     return (
@@ -29,6 +28,11 @@ function App() {
                     <Route path="listen" element={
                       <ProtectedRoute>
                         <ListenPage />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="profile" element={
+                      <ProtectedRoute>
+                        <ProfilePage />
                       </ProtectedRoute>
                     } />
                   </Routes>

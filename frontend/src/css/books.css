@@ -1,5 +1,7 @@
-.content {
+.content-books {
     overflow-x: hidden;
+    margin-top: 120px;
+    padding: 40px;
 }
 .book-container {
     display: flex;
@@ -70,7 +72,7 @@
     padding: 10px;
 }
 
-.content h1 {
+.content1 h1 {
     font-size: 40px; /* Adjust size as needed */
     color: #AE0143; /* This is a placeholder for your chosen color */
     margin-right: auto; /* This pushes the buttons to the right */

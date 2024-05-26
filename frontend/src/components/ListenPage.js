@@ -100,7 +100,7 @@ const ListenPage = () => {
     };
 
     return (
-        <div className="content">
+        <div className="content-listen">
             <div className="player">
                 <div className="top-part">
                     <img src={`${apiUrl}/data/images/little_red_riding_hood.png`} alt="Little Red Riding Hood" id="cover-art" className="cover-art" />
