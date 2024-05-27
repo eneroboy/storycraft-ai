@@ -8,6 +8,8 @@ import MainLayout from "./components/MainLayout";
 import ProtectedRoute from './components/ProtectedRoute';
 import ListenPage from "./components/ListenPage";
 import ProfilePage from "./components/ProfilePage";
+import AddBookPage from "./components/AddBookPage";
+import EditBookPage from "./components/EditBookPage";
 
 function App() {
     return (
@@ -33,6 +35,16 @@ function App() {
                     <Route path="profile" element={
                       <ProtectedRoute>
                         <ProfilePage />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="add-book" element={
+                      <ProtectedRoute>
+                        <AddBookPage />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="edit-book/:id" element={
+                      <ProtectedRoute>
+                        <EditBookPage />
                       </ProtectedRoute>
                     } />
                   </Routes>

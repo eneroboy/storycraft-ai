@@ -1,0 +1,166 @@
+/* BOOKS */
+.content-add-book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .add-book-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 350px;
+      z-index: 1;
+  }
+  
+  .add-book-form input,
+  .add-book-form select,
+  .add-book-form button {
+      /* margin: 10px 0; */
+      width: 100%;
+  }
+  
+  .dashed-circle {
+      border: 2px dashed #E8BACC;
+      border-radius: 20%;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; /* Zapewnia, że obrazek nie wyjdzie poza okrąg */
+    }
+  
+    .dashed-circle img {
+      width: 100%; /* Zapewnia, że obrazek wypełni okrąg */
+      border-radius: 20%;
+      height: 100%;
+      display: none; /* Początkowo ukryj obrazek */
+    }
+  
+    .dashed-circle img.visible {
+      display: block; /* Pokaż obrazek po wczytaniu */
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .upload-text {
+      color: #E8BACC; /* Match your primary color */
+      position: absolute;
+      top: 50%;
+      font-size: 12px;
+      transform: translateY(-30%);
+    }
+    
+    .photo-text {
+      color: #AE0143; /* Match your primary color */
+      font-size: 16px; /* Smaller text size for the photo text */
+    }
+  
+    .profile-photo-uploader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+    }
+    
+    .file-input {
+      display: none; /* Hide the actual input */
+    }
+    
+    .file-label {
+      cursor: pointer;
+      text-align: center;
+    }
+  
+    .title-text {
+      font-weight: bold;
+      color: #AE0143;
+    }
+  
+    .title-input,
+    .author-input,
+    .category-input,
+    .language-select {
+      width: 100%; /* Adjust width to be full within the form */
+      padding: 16px 20px;
+      margin: 5px 0;
+      border: 2px solid #C8C8C8; /* Border for the inputs */
+      border-radius: 100px; /* Rounded corners for inputs */
+      background: #FFFFFF; /* Light background for inputs */
+      height: auto;
+    }
+  
+    .btn {
+      padding: 16px 20px;
+      height: auto;
+      width: 100%;
+      margin: 10px 0;
+      border: none;
+      border-radius: 100px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  
+  .btn.primary {
+      background-color: #AE0143; /* Primary button color */
+      color: white;
+  }
+  
+  .form-label {
+      font-weight: bold;
+      text-align: left;
+      width: 100%;
+      margin: 0 0;
+      padding-left: 10px;
+      color:#AE0143;
+  }
+  
+  .text-file-input::before {
+    content: attr(value);
+    color: lightblue;
+  }
+  
+  .custom-file-upload {
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: darkgrey;
+    color: white;
+    border-radius: 50px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 5px;
+  }
+  
+  .text-file-input {
+    display: none;
+  }
+  
+  @media screen and (min-width: 769px) {
+    .dashed-circle {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  
+  .description-input {
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    font-family: 'Montserrat', sans-serif;
+    padding: 16px 20px;
+    margin: 5px 0;
+    border: 2px solid #C8C8C8; /* Border for the inputs */
+    border-radius: 100px; /* Rounded corners for inputs */
+    background: #FFFFFF; /* Light background for inputs */
+    height: auto;
+  }

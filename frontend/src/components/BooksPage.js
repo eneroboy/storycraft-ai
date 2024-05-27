@@ -99,7 +99,7 @@ const BooksPage = () => {
             <div className="button-panel">
                 <button className="button left-button">#Animals</button>
                 <button className="button right-button">#MyBooks</button>
-                <button className="button button-add" onClick={() => window.location.href = '/add-new-book'}>Add new</button>
+                <button className="button button-add" onClick={() => window.location.href = '/add-book'}>Add new</button>
             </div>
             <div className="book-container">
                 {books.map(book => (
