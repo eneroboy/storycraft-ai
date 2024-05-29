@@ -77,15 +77,22 @@ const EditBook = () => {
     const handleSubmit = () => {
         const headers = getAuthHeaders();
         const formData = new FormData();
-        formData.append('photo', photo);
+        // formData.append('photo', photo);
         formData.append('title', title);
         formData.append('author', author);
         formData.append('category', category);
         formData.append('language', language);
         formData.append('description', description);
-        formData.append('textFile', textFile);
+        // formData.append('textFile', textFile);
+        if (photo) {
+            formData.append('photo', photo);
+        }
+        
+        if (textFile) {
+            formData.append('textFile', textFile);
+        }
 
-        console.log('formData:', textFile);
+        // console.log('formData:', textFile);
 
         axios.put(`${apiUrl}/books/${bookId}`, formData, { headers })
             .then(response => {

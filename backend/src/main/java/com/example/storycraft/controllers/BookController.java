@@ -108,12 +108,19 @@ public class BookController {
             @RequestParam("category") String category,
             @RequestParam("language") String language,
             @RequestParam("description") String description,
-            @RequestParam("photo") MultipartFile photo,
-            @RequestParam("textFile") MultipartFile textFile
+            @RequestParam(value = "photo", required = false) MultipartFile photo,
+            @RequestParam(value = "textFile", required = false) MultipartFile textFile
     ) {
         try {
-            String coverPath = saveFile(photo, "./backend/images/", "images");
-            String textFilePath = saveFile(textFile, "./backend/books/", "books");
+            String coverPath = null;
+            if (photo != null && !photo.isEmpty()) {
+                coverPath = saveFile(photo, "./backend/images/", "images");
+            }
+
+            String textFilePath = null;
+            if (textFile != null && !textFile.isEmpty()) {
+                textFilePath = saveFile(textFile, "./backend/books/", "books");
+            }
 
             Book book = bookService.getBookById(id);
             book.setBookName(title);
@@ -121,8 +128,12 @@ public class BookController {
             book.setBookCategories(category);
             book.setBookLanguage(language);
             book.setBookDescription(description);
-            book.setBookPhotoPath(coverPath);
-            book.setBookFilePath(textFilePath);
+            if (coverPath != null) {
+                book.setBookPhotoPath(coverPath);
+            }
+            if (textFilePath != null) {
+                book.setBookFilePath(textFilePath);
+            }
 
             return ResponseEntity.ok(bookService.updateBook(id, book));
         } catch (IOException e) {
