@@ -53,7 +53,7 @@ function LoginPage() {
 
     const togglePassword = () => {
         const passwordInput = document.getElementById('password-input');
-        const togglePassword = document.getElementById('toggle-password-login');
+        const togglePassword = document.getElementById('toggle-password');
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
             togglePassword.innerHTML = 'visibility_off';

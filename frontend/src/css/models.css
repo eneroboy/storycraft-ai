@@ -1,0 +1,134 @@
+.content-models {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.voice-model {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    /* White background */
+    border-radius: 20px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for each voice model */
+    margin: 10px;
+    padding: 20px;
+    position: relative;
+    width: 300px;
+}
+
+.voice-model img {
+    width: 60px;
+    /* Adjust as needed */
+    height: 60px;
+    /* Adjust as needed */
+    border-radius: 50%;
+    /* Circular images */
+    margin-right: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.info h2 {
+    margin: 0;
+    color: #AE0143;
+    font-size: 1.2em;
+}
+
+.info p {
+    margin: 4px 0;
+    color: #AE0143;
+    font-size: 0.9em;
+}
+
+.actions {
+    margin-left: auto;
+    padding-left: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    color: #c0c0c0;
+    /* Menu dots color */
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    color: #606060;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100px;
+    /* Set as needed */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 3;
+}
+
+/* Optional: Add some hover effects for interactive elements */
+.voice-model:hover .actions {
+    color: #AE0143;
+}
+
+.actions:hover+.menu,
+.menu:hover {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .voice-model {
+        width: 350px;
+        /* Zwiększona szerokość modelu głosu */
+        margin: 20px;
+        /* Większy margines */
+        padding: 30px;
+        /* Większy padding */
+    }
+
+    .voice-model img {
+        width: 80px;
+        /* Zwiększony rozmiar obrazów */
+        height: 80px;
+    }
+
+    .info h2 {
+        font-size: 1.5em;
+        /* Zwiększona wielkość czcionki dla tytułu */
+    }
+
+    .info p {
+        font-size: 1.1em;
+        /* Zwiększona wielkość czcionki dla opisu */
+    }
+
+    .actions span {
+        font-size: 40px;
+        text-align: center;
+        /* Zwiększona wielkość ikony menu */
+    }
+
+    .menu {
+        width: 120px;
+        /* Zwiększona szerokość menu */
+    }
+}
+
+h1 {
+
+    text-align: center;
+    font-size: 2.5em;
+    color: #AE0143;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}

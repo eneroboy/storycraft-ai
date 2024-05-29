@@ -10,6 +10,9 @@ import ListenPage from "./components/ListenPage";
 import ProfilePage from "./components/ProfilePage";
 import AddBookPage from "./components/AddBookPage";
 import EditBookPage from "./components/EditBookPage";
+import ModelsPage from "./components/ModelsPage";
+import AddPage from "./components/AddPage";
+
 
 function App() {
     return (
@@ -25,6 +28,11 @@ function App() {
                     <Route path="books" element={
                       <ProtectedRoute>
                         <BooksPage />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="add" element={
+                      <ProtectedRoute>
+                        <AddPage />
                       </ProtectedRoute>
                     } />
                     <Route path="listen" element={
@@ -45,6 +53,11 @@ function App() {
                     <Route path="edit-book/:id" element={
                       <ProtectedRoute>
                         <EditBookPage />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="models" element={
+                      <ProtectedRoute>
+                        <ModelsPage />
                       </ProtectedRoute>
                     } />
                   </Routes>
