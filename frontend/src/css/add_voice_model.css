@@ -1,0 +1,155 @@
+.content-add-voice-model {  
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .add-book-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 350px;
+      z-index: 1;
+  }
+  
+  .add-book-form input,
+  .add-book-form select,
+  .add-book-form button {
+      /* margin: 10px 0; */
+      width: 100%;
+  }
+
+  .dashed-circle-add-voice-model {
+    border: 2px dashed #E8BACC;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Zapewnia, że obrazek nie wyjdzie poza okrąg */
+  }
+
+  .dashed-circle-add-voice-model img {
+    width: 100%; /* Zapewnia, że obrazek wypełni okrąg */
+    border-radius: 50%;
+    height: 100%;
+    display: none; /* Początkowo ukryj obrazek */
+  }
+
+  .dashed-circle-add-voice-model img.visible {
+    display: block; /* Pokaż obrazek po wczytaniu */
+  }
+  
+  .hidden {
+    display: none;
+  }
+ 
+  .progress-indicator {
+    background-color: #eee;
+    padding: 10px 15px;
+    border-radius: 20px;
+    width: fit-content;
+    margin: 5px auto;
+    color: #AE0143;
+    font-weight: bold;
+}
+  
+  .upload-text-add-voice-model {
+    color: #E8BACC; /* Match your primary color */
+    position: absolute;
+    top: 50%;
+    font-size: 12px;
+    transform: translateY(-30%);
+  }
+  
+  .photo-text-add-voice-model {
+    color: #AE0143; /* Match your primary color */
+    font-size: 16px; /* Smaller text size for the photo text */
+  }
+
+  #title-input {
+    width: 93%;
+  }
+
+  .profile-photo-uploader-add-voice-model {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+
+  .file-input-add-voice-model {
+    display: none; /* Hide the actual input */
+  }
+
+  .file-label-add-voice-model {
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .title-text-add-voice-model {
+    font-weight: bold;
+    color: #AE0143;
+    text-align: center;
+  }
+
+  .title-input-add-voice-model,
+  .author-input-add-voice-model,
+  .category-input-add-voice-model,
+  .language-select-add-voice-model {
+    width: 100%; /* Adjust width to be full within the form */
+    padding: 16px 20px;
+    margin: 5px 0;
+    border: 2px solid #C8C8C8; /* Border for the inputs */
+    border-radius: 100px; /* Rounded corners for inputs */
+    background: #FFFFFF; /* Light background for inputs */
+    height: auto;
+  }
+
+  .btn {
+    padding: 16px 20px;
+    height: auto;
+    width: 100%;
+    margin: 10px 0;
+    border: none;
+    border-radius: 100px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn.primary {
+    background-color: #AE0143; /* Primary button color */
+    color: white;
+}
+
+.form-label-add-voice-model {
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    margin: 0 0;
+    padding-left: 10px;
+    color:#AE0143;
+}
+
+@media screen and (min-width: 769px) {
+    .dashed-circle-add-voice-model {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+@media (max-width: 768px) {
+    .add-book-form {
+        margin-top: 100px;
+        width: 70%;
+    }
+  }

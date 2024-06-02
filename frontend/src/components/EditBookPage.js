@@ -140,7 +140,7 @@ const EditBook = () => {
                 <label htmlFor="text-file-input" id="text-file-input-label" className="custom-file-upload">
                     {textFileName || 'Change File'}
                 </label>
-                <input type="file" id="text-file-input" className="text-file-input" accept=".txt,.pdf" onChange={handleFileChange} />
+                <input type="file" id="text-file-input" className="text-file-input" accept=".txt" onChange={handleFileChange} />
                 <button type="button" className="btn primary" onClick={handleSubmit}>Save</button>
             </div>
         </div>

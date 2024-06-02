@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/add_book.css';
+import { jwtDecode } from "jwt-decode";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 function getAuthHeaders() {
@@ -18,6 +19,7 @@ function getAuthHeaders() {
     return headers;
 }
 
+
 const AddBookPage = () => {
     const [photo, setPhoto] = useState(null);
     const [profileImage, setProfileImage] = useState('');
@@ -28,6 +30,9 @@ const AddBookPage = () => {
     const [description, setDescription] = useState('');
     const [textFile, setTextFile] = useState(null);
     const [textFileName, setTextFileName] = useState('');
+    const token = localStorage.getItem('token');
+    const decodedToken = jwtDecode(token);
+    const userId = decodedToken.id;
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -52,6 +57,8 @@ const AddBookPage = () => {
     const handleSubmit = () => {
         const headers = getAuthHeaders();
         const formData = new FormData();
+
+        formData.append('userId', userId);
         formData.append('photo', photo);
         formData.append('title', title);
         formData.append('author', author);
@@ -106,7 +113,7 @@ const AddBookPage = () => {
                 <label htmlFor="text-file-input" id="text-file-input-label" className="custom-file-upload">
                     {textFileName || 'Upload File'}
                 </label>
-                <input type="file" id="text-file-input" className="text-file-input" accept=".txt,.pdf" onChange={handleFileChange} required />
+                <input type="file" id="text-file-input" className="text-file-input" accept=".txt" onChange={handleFileChange} required />
                 <button type="button" className="btn primary" onClick={handleSubmit}>Save</button>
             </div>
         </div>

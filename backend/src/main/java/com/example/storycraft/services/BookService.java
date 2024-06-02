@@ -60,6 +60,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -91,9 +95,25 @@ public class BookService {
         return bookRepository.save(existingBook);
     }
 
-    @Transactional
-    public void deleteBook(Long bookId) {
-        bookRepository.deleteById(bookId);
+    public void deleteBook(Long id) throws IOException {
+        Book book = bookRepository.findById(id).orElse(null);
+        if (book != null) {
+            // Delete book file
+            deleteFile(book.getBookFilePath());
+            // Delete book photo
+            deleteFile(book.getBookPhotoPath());
+            // Delete book from the repository
+            bookRepository.deleteById(id);
+        }
+    }
+
+    private void deleteFile(String filePath) throws IOException {
+        if (filePath != null && !filePath.isEmpty()) {
+            Path path = Paths.get("./backend", filePath.substring(filePath.lastIndexOf("/api/data/") + 9)).normalize().toAbsolutePath();
+            if (Files.exists(path)) {
+                Files.delete(path);
+            }
+        }
     }
 
     public Book getBookById(Long bookId) {

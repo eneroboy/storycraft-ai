@@ -22,9 +22,7 @@ const BooksPage = () => {
     const [books, setBooks] = useState([]);
     const [showVoiceModelPopup, setShowVoiceModelPopup] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
-    const [selectedVoiceModel, setSelectedVoiceModel] = useState(null);
-
-    
+    const [selectedVoiceModel, setSelectedVoiceModel] = useState(null);   
 
     useEffect(() => {
         const token = localStorage.getItem('token');  // Retrieve the JWT from local storage
@@ -56,14 +54,6 @@ const BooksPage = () => {
 
         fetchVoiceModels();
 
-
-        // fetch(`${apiUrl}/voicemodels`, { method: 'GET', headers: headers })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setVoiceModels(data.voicemodels.map(voicemodel => JSON.parse(voicemodel)));
-        //     })
-        //     .catch(error => console.error('Error:', error));
-
         fetch(`${apiUrl}/books/user/` + userId, { method: 'GET', headers: headers })
             .then(response => response.json())
             .then(setBooks)
@@ -93,6 +83,20 @@ const BooksPage = () => {
         setShowVoiceModelPopup(false);
     };
 
+    const handleDeleteBook = async (bookId) => {
+        const token = localStorage.getItem('token');
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+
+        try {
+            await axios.delete(`${apiUrl}/books/${bookId}`, { headers: headers });
+            setBooks(books.filter(book => book.id !== bookId));
+        } catch (error) {
+            console.error('Error deleting book:', error);
+        }
+    };
+
     return (
         <div className="content-books">
             <h1>Books</h1>
@@ -109,6 +113,7 @@ const BooksPage = () => {
                         <div className="book-actions">
                             <button className="book-action-btn edit-btn" onClick={() => handleEditBook(book.id)}>Edit</button>
                             <button className="book-action-btn listen-btn" onClick={() => handleListen(book)}>Listen</button>
+                            <button className="book-action-btn delete-btn"onClick={() => handleDeleteBook(book.id)}>Delete</button>
                         </div>
                     </div>
                 ))}

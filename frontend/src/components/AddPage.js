@@ -43,7 +43,7 @@ const AddPage = () => {
       ]);
       setStep(2);
     } else {
-      window.location.href = '/record-voice';
+      window.location.href = '/add-voice-model';
     }
   };
 

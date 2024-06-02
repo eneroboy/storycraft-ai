@@ -44,6 +44,7 @@ package com.example.storycraft.controllers;
 
 import com.example.storycraft.models.Book;
 import com.example.storycraft.services.BookService;
+import com.example.storycraft.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +62,9 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping
     public ResponseEntity<?> getAllBooks() {
         return ResponseEntity.ok(bookService.getAllBooks());
@@ -73,6 +77,7 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity<?> addBook(
+            @RequestParam("userId") String userId,
             @RequestParam("title") String title,
             @RequestParam("author") String author,
             @RequestParam("category") String category,
@@ -86,6 +91,8 @@ public class BookController {
             String textFilePath = saveFile(textFile, "./backend/books/", "books");
 
             Book book = new Book();
+            Long userIdLong = Long.parseLong(userId);
+            book.setUser(userService.getUserById(userIdLong));
             book.setBookName(title);
             book.setBookAuthor(author);
             book.setBookCategories(category);
@@ -155,5 +162,11 @@ public class BookController {
     @GetMapping("/user/{id}")
     public ResponseEntity<?> getBooksByUserId(@PathVariable Long id) {
         return ResponseEntity.ok(bookService.getBooksByUserId(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBook(@PathVariable Long id) throws IOException {
+        bookService.deleteBook(id);
+        return ResponseEntity.ok().build();
     }
 }
