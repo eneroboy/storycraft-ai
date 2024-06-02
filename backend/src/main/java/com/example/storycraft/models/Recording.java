@@ -24,7 +24,7 @@ public class Recording {
     private Integer numberOfWordsInRecord;
 
     @Column(name = "record_duration")
-    private String recordDuration;
+    private Float recordDuration;
 
     @Column(name = "record_file_path")
     private String recordFilePath;
@@ -52,7 +52,7 @@ public class Recording {
         return numberOfWordsInRecord;
     }
 
-    public String getRecordDuration() {
+    public Float getRecordDuration() {
         return recordDuration;
     }
 
@@ -84,7 +84,7 @@ public class Recording {
         this.numberOfWordsInRecord = numberOfWordsInRecord;
     }
 
-    public void setRecordDuration(String recordDuration) {
+    public void setRecordDuration(Float recordDuration) {
         this.recordDuration = recordDuration;
     }
 

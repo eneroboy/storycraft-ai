@@ -12,6 +12,7 @@ import AddBookPage from "./components/AddBookPage";
 import EditBookPage from "./components/EditBookPage";
 import ModelsPage from "./components/ModelsPage";
 import AddPage from "./components/AddPage";
+import RecordPage from "./components/RecordPage";
 
 
 function App() {
@@ -33,6 +34,11 @@ function App() {
                     <Route path="add" element={
                       <ProtectedRoute>
                         <AddPage />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="record-voice" element={
+                      <ProtectedRoute>
+                        <RecordPage />
                       </ProtectedRoute>
                     } />
                     <Route path="listen" element={

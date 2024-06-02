@@ -1,0 +1,118 @@
+.container-record {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding-top: 60px;
+}
+
+.progress-indicator {
+    background-color: #eee;
+    padding: 10px 15px;
+    border-radius: 20px;
+    width: fit-content;
+    margin: 10px auto;
+    color: #AE0143;
+    font-weight: bold;
+}
+
+#time {
+    background-color: #eee;
+    padding: 10px 15px;
+    border-radius: 20px;
+    width: fit-content;
+    margin: 10px auto;
+    color: #AE0143;
+    font-weight: bold;
+}
+
+.progress-title {
+    margin-top: 20px;
+    color: #AE0143;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+#continue-btn {
+    background-color: #AE0143;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.text-container {
+    background: white;
+    height: auto; /* Adjust as needed */
+    margin-bottom: 20px;
+    padding: 20px;
+    font-size: 20px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+
+.read-text {
+    /* color: #AE0143; Color for read text */
+    font-weight: bold;
+}
+
+.unread-text {
+    /* font-weight: bold; */
+    color: #606060; /* Color for unread text */
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #fff; /* Background color */
+    border-radius: 50px; /* Rounded corners */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    width: 300px;
+  }
+  
+  .time {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .control_button {
+    background-color: white; /* Light background for buttons */
+    border: none;
+    border-radius: 50%; /* Circular buttons */
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    color:#AE0143;
+    font-size: 35px;
+  }
+  
+  .control_button:focus {
+    outline: none;
+  }
+  
+  .control_button:active {
+    transform: scale(0.98); /* Slight press effect */
+  }
+
+  #play-pause {
+    background-color: #AE0143;
+    color:#fff;
+  }
+
+  .controls-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+  }
