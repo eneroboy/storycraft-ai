@@ -13,6 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -50,9 +52,12 @@ public class RecordController {
                 record.setRecordLanguage(language);
                 record.setRecordTextFilePath(text);
                 record.setNumberOfWordsInRecord(numberOfWords);
-                recordingService.addRecord(record);
+                Integer recordId = recordingService.addRecord(record);
 
-                return ResponseEntity.ok().body(Collections.singletonMap("success", true));
+                Map<String, Object> response = new HashMap<>();
+                response.put("success", true);
+                response.put("recordId", recordId);
+                return ResponseEntity.ok().body(response);
             } catch (IOException e) {
                 e.printStackTrace();
                 return ResponseEntity.badRequest().body(Collections.singletonMap("success", false));

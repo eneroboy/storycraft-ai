@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/add_voice_model.css';
 import { jwtDecode } from "jwt-decode";
+
 const apiUrl = process.env.REACT_APP_API_URL;
 
 function getAuthHeaders() {
@@ -24,6 +25,7 @@ const AddVoiceModelPage = () => {
     const [profileImage, setProfileImage] = useState('');
     const [title, setTitle] = useState('');
     const [language, setLanguage] = useState('english');
+    const [method, setMethod] = useState('coqui-ai');
     const token = localStorage.getItem('token');
     const decodedToken = jwtDecode(token);
     const userId = decodedToken.id;
@@ -48,11 +50,14 @@ const AddVoiceModelPage = () => {
         formData.append('photo', photo);
         formData.append('title', title);
         formData.append('language', language);
+        formData.append('method', method);
 
         axios.post(`${apiUrl}/voicemodels`, formData, { headers })
             .then(response => {
                 alert('Voice model added successfully');
-                window.location.pathname = '/record-voice';
+                const voiceModelId = response.data.id;
+                console.log('Voice model added:', response.data);
+                window.location.pathname = '/add-record-voice/' + voiceModelId;
             })
             .catch(error => {
                 console.error('Error adding voice model:', error);
@@ -81,6 +86,11 @@ const AddVoiceModelPage = () => {
                 <select id="language-select" className="language-select-add-voice-model" value={language} onChange={(e) => setLanguage(e.target.value)} required>
                     <option value="english">English</option>
                     <option value="polish">Polish</option>
+                </select>
+                <label htmlFor="method-select" className="form-label-add-voice-model">Language</label>
+                <select id="method-select" className="language-select-add-voice-model" value={method} onChange={(e) => setMethod(e.target.value)} required>
+                    <option value="coqui-ai">coqui-ai</option>
+                    <option value="Elevenlabs">Elevenlabs</option>
                 </select>
                 <button type="button" id="ctn-button" className="btn primary" onClick={handleSubmit}>Continue</button>
             </div>

@@ -1,0 +1,84 @@
+body, h1, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-successful-job {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding-top: 30px;
+    align-items: center;
+}
+
+.progress-indicator {
+    background-color: #eee;
+    padding: 10px 15px;
+    border-radius: 20px;
+    width: fit-content;
+    margin: 10px auto;
+    color: #AE0143;
+    font-weight: bold;
+}
+
+.progress-title {
+    margin-top: 20px;
+    color: #AE0143;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+#continue-btn {
+    background-color: #AE0143;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.text-container {
+    background: white;
+    height: auto; /* Adjust as needed */
+    margin-top: 20px;
+    padding: 0px 20px;
+    font-size: 20px;
+    width: 50%;
+    color: #898989;
+}
+
+.ok-image {
+    width: 300px;
+    height: 300px;
+    max-width: 300px;
+    border-radius: 20%;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 50px 0;
+    }
+    .ok-image {
+        width: 250px;
+        height: 250px;
+    }
+}

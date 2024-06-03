@@ -14,6 +14,7 @@ import ModelsPage from "./components/ModelsPage";
 import AddPage from "./components/AddPage";
 import RecordPage from "./components/RecordPage";
 import AddVoiceModelPage from "./components/AddVoiceModelPage";
+import AddSuccessfulPage from "./components/AddSuccessfulPage";
 
 
 function App() {
@@ -37,9 +38,14 @@ function App() {
                         <AddPage />
                       </ProtectedRoute>
                     } />
-                    <Route path="record-voice" element={
+                    <Route path="add-record-voice/:id" element={
                       <ProtectedRoute>
                         <RecordPage />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="add-successful" element={
+                      <ProtectedRoute>
+                        <AddSuccessfulPage />
                       </ProtectedRoute>
                     } />
                     <Route path="add-voice-model" element={

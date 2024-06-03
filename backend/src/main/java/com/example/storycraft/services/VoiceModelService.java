@@ -24,4 +24,18 @@ public class VoiceModelService {
     public List<VoiceModel> getVoiceModelsByUserId(Long userId) {
         return voiceModelRepository.findByUserId(userId);
     }
+
+    public VoiceModel getVoiceModelById(Long voiceModelId) {
+        return voiceModelRepository.findById(voiceModelId).orElseThrow(() -> new RuntimeException("Voice model not found"));
+    }
+
+    public VoiceModel updateVoiceModel(Long voiceModelId, VoiceModel voiceModel) {
+        VoiceModel existingVoiceModel = voiceModelRepository.findById(voiceModelId)
+                .orElseThrow(() -> new RuntimeException("Voice model not found"));
+        existingVoiceModel.setVoiceName(voiceModel.getVoiceName());
+        existingVoiceModel.setVoiceLanguage(voiceModel.getVoiceLanguage());
+        existingVoiceModel.setVoiceAvatarPath(voiceModel.getVoiceAvatarPath());
+        existingVoiceModel.setVoiceMethod(voiceModel.getVoiceMethod());
+        return voiceModelRepository.save(existingVoiceModel);
+    }
 }

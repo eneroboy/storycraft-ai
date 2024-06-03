@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import '../css/record_voice.css';
+import { useParams } from 'react-router-dom';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -36,7 +37,7 @@ function getUserIdFromToken(token) {
 
 const RecordPage = () => {
   const text = `Once upon a time, in a quaint village nestled among rolling hills and vibrant meadows, lived a young girl known to all as Little Red Riding Hood. Named for her beloved red cloak, a gift from her doting grandmother, she was cherished for her bright smile and kind heart. One sunny morning, Little Red Riding Hood's mother asked her to deliver a basket of fresh treats to her grandmother, who lived deep in the forest. With a promise to stay off the path and not dally, she set on, her red cloak fluttering behind her like a banner of cheer.`;
-
+  const { id: voiceModelId } = useParams(); 
   const [reading, setReading] = useState(false);
   const [readIndex, setReadIndex] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
@@ -72,7 +73,7 @@ const RecordPage = () => {
   };
 
   const handleContinueClick = () => {
-    window.location.href = '/add-voice-model';
+    window.location.href = '/add-successful';
   };
 
   const handlePlayPauseClick = () => {
@@ -155,8 +156,15 @@ const RecordPage = () => {
 
     try {
       const response = await axios.post(`${apiUrl}/records`, formData, { headers });
+      // const response = { data: { success: true } };
       if (response.data.success) {
         console.log('Recording saved successfully');
+        const formData = new FormData();
+        const recordId = response.data.recordId;
+        formData.append('recordId', recordId);
+        const response1 = axios.put(`${apiUrl}/voicemodels/${voiceModelId}`, formData, { headers });
+        console.log('Voice model updated:', response1.data);
+        alert('Recording saved successfully');
       } else {
         console.error('Failed to save recording');
       }
@@ -201,7 +209,7 @@ const RecordPage = () => {
   return (
     <div className="content">
       <div className="container-record">
-        <div className="progress-indicator">3 / 5</div>
+        <div className="progress-indicator">4 / 5</div>
         <h1 className="progress-title">Record your voice</h1>
         <div className="text-container" id="text-container" ref={textContainerRef}></div>
         <div id="time" ref={timerRef}>00:00</div>

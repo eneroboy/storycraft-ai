@@ -18,14 +18,14 @@ public class VoiceModel {
     @Column(name = "voice_language", length = 50)
     private String voiceLanguage;
 
-    @Column(name = "voice_file_path")
-    private String voiceFilePath;
-
     @Column(name = "voice_avatar_path")
     private String voiceAvatarPath;
 
     @Column(name = "record_id")
     private Integer recordId;
+
+    @Column(name = "voice_method")
+    private String voiceMethod;
 
     // Getters and Setters
     public Integer getId() {
@@ -44,16 +44,16 @@ public class VoiceModel {
         return voiceLanguage;
     }
 
-    public String getVoiceFilePath() {
-        return voiceFilePath;
-    }
-
     public String getVoiceAvatarPath() {
         return voiceAvatarPath;
     }
 
     public Integer getRecordId() {
         return recordId;
+    }
+
+    public String getVoiceMethod() {
+        return voiceMethod;
     }
 
     public void setUser(User user) {
@@ -68,10 +68,6 @@ public class VoiceModel {
         this.voiceLanguage = voiceLanguage;
     }
 
-    public void setVoiceFilePath(String voiceFilePath) {
-        this.voiceFilePath = voiceFilePath;
-    }
-
     public void setVoiceAvatarPath(String voiceAvatarPath) {
         this.voiceAvatarPath = voiceAvatarPath;
     }
@@ -82,5 +78,9 @@ public class VoiceModel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setVoiceMethod(String voiceMethod) {
+        this.voiceMethod = voiceMethod;
     }
 }
