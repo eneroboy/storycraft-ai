@@ -70,7 +70,7 @@
     padding: 10px;
 }
 
-.content1 h1 {
+.content-books h1 {
     font-size: 40px; /* Adjust size as needed */
     color: #AE0143; /* This is a placeholder for your chosen color */
     margin-right: auto; /* This pushes the buttons to the right */
@@ -170,7 +170,7 @@
 /* This will apply styles for screens larger than 768px */
 @media (min-width: 768px) {
     .content-books {
-        margin-top: 80px;
+        margin-top: 150px;
         padding: 40px;
     }
 }
@@ -178,7 +178,7 @@
 /* Styles for mobile devices */
 @media (max-width: 767px) {
     .content-books {
-        margin: 10px;
+        margin: 20px;
     }
     /* .book-tile {
         width: calc(33.33333% - 20px);

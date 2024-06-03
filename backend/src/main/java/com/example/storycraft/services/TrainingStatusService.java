@@ -1,3 +1,31 @@
+//package com.example.storycraft.services;
+//
+//import org.springframework.stereotype.Service;
+//
+//import java.util.HashMap;
+//import java.util.Map;
+//
+//@Service
+//public class TrainingStatusService {
+//
+//    private final Map<String, Object> trainingStatus = new HashMap<>();
+//
+//    public TrainingStatusService() {
+//        // Initialize with a default status
+//        trainingStatus.put("status", "idle");
+//        trainingStatus.put("message", "No training in progress");
+//    }
+//
+//    public Map<String, Object> getTrainingStatus() {
+//        return trainingStatus;
+//    }
+//
+//    public void setTrainingStatus(boolean completed, String message) {
+//        trainingStatus.put("status", completed ? "completed" : "in_progress");
+//        trainingStatus.put("message", message);
+//    }
+//}
+
 package com.example.storycraft.services;
 
 import org.springframework.stereotype.Service;
@@ -8,18 +36,28 @@ import java.util.Map;
 @Service
 public class TrainingStatusService {
 
-    private boolean isTrainingCompleted = false;
-    private String trainingMessage = "";
+    private final Map<String, Object> trainingStatus = new HashMap<>();
 
-    public Map<String, Object> getTrainingStatus() {
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", isTrainingCompleted ? "completed" : "in-progress");
-        response.put("message", trainingMessage);
-        return response;
+    public TrainingStatusService() {
+        // Initialize with a default status
+        trainingStatus.put("status", "idle");
+        trainingStatus.put("message", "No training in progress");
+        trainingStatus.put("shown", false);
     }
 
-    public void setTrainingStatus(boolean isCompleted, String message) {
-        this.isTrainingCompleted = isCompleted;
-        this.trainingMessage = message;
+    public Map<String, Object> getTrainingStatus() {
+        return trainingStatus;
+    }
+
+    public void setTrainingStatus(boolean completed, String message) {
+        trainingStatus.put("status", completed ? "completed" : "in_progress");
+        trainingStatus.put("message", message);
+        if (completed) {
+            trainingStatus.put("shown", false); // Reset shown status on completion
+        }
+    }
+
+    public void setShownStatus(boolean shown) {
+        trainingStatus.put("shown", shown);
     }
 }

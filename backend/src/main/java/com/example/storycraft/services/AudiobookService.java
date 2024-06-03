@@ -28,6 +28,7 @@ public class AudiobookService {
             audiobook.setUser(updatedAudiobook.getUser());
             audiobook.setBook(updatedAudiobook.getBook());
             audiobook.setAudiobookFilePath(updatedAudiobook.getAudiobookFilePath());
+            audiobook.setAudiobookDuration(updatedAudiobook.getAudiobookDuration());
             return audiobookRepository.save(audiobook);
         }).orElseThrow(() -> new RuntimeException("Audiobook not found"));
     }

@@ -16,6 +16,7 @@ import RecordPage from "./components/RecordPage";
 import AddVoiceModelPage from "./components/AddVoiceModelPage";
 import AddSuccessfulPage from "./components/AddSuccessfulPage";
 import NotificationPopup from "./components/NotificationPopup";
+import AdminPage from "./components/AdminPage";
 
 
 function App() {
@@ -30,6 +31,11 @@ function App() {
                 <MainLayout>
                   <NotificationPopup />
                   <Routes>
+                  <Route path="admin" element={
+                      <ProtectedRoute>
+                        <AdminPage />
+                      </ProtectedRoute>
+                    } />
                     <Route path="books" element={
                       <ProtectedRoute>
                         <BooksPage />

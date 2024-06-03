@@ -211,6 +211,7 @@ const BooksPage = () => {
             try {
                 const response = await axios.get(`${apiUrl}/audiobooks/user/${userId}`, { headers });
                 setAudiobooks(response.data);
+                console.log("Audiobooks:", response.data);
             } catch (error) {
                 console.error('Error fetching audiobooks:', error);
             }
@@ -238,14 +239,15 @@ const BooksPage = () => {
     const handleVoiceModelSelect = async (voicemodel) => {
         console.log("Selected voice model:", voicemodel);
 
-        const audiobookExists = audiobooks.find(audiobook => audiobook.bookId === selectedBook.id);
+        const audiobookExists = audiobooks.find(audiobook => audiobook.book.id === selectedBook.id);
         console.log("Audiobook exists:", audiobookExists);
         if (audiobookExists) {
-            window.location.href = '/listen';
-            localStorage.setItem('audiobook_file_path', audiobookExists.filepath);
+            // window.location.href = '/listen';
+            localStorage.setItem('audiobook_file_path', audiobookExists.audiobookFilePath);
             localStorage.setItem('book_title', selectedBook.bookName);
             localStorage.setItem('book_description', selectedBook.bookDescription);
             localStorage.setItem('book_cover_path', selectedBook.bookPhotoPath);
+            localStorage.setItem('audiobook_duration', audiobookExists.audiobookDuration);
         } else {
             try {
                 const headers = getAuthHeaders();
@@ -311,6 +313,7 @@ const BooksPage = () => {
                             {voicemodels.map(voicemodel => (
                                 <div key={voicemodel.recordId} className="voicemodel-item" onClick={() => handleVoiceModelSelect(voicemodel)}>
                                     {voicemodel.voiceName}
+                                    {audiobooks.find(audiobook => audiobook.book.id === selectedBook.id) ? " - Created" : " - Create"}
                                 </div>
                             ))}
                         </div>

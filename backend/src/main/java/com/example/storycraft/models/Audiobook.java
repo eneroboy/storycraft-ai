@@ -30,6 +30,9 @@ public class Audiobook {
     @Column(name = "audiobook_created_at", columnDefinition = "TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime audiobookCreatedAt;
 
+    @Column(name = "audiobook_duration", nullable = false)
+    private Integer audiobookDuration;
+
     // Getters and Setters
     public Integer getId() {
         return id;
@@ -55,6 +58,10 @@ public class Audiobook {
         return audiobookCreatedAt;
     }
 
+    public Integer getAudiobookDuration() {
+        return audiobookDuration;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -77,5 +84,9 @@ public class Audiobook {
 
     public void setAudiobookCreatedAt(LocalDateTime audiobookCreatedAt) {
         this.audiobookCreatedAt = audiobookCreatedAt;
+    }
+
+    public void setAudiobookDuration(Integer audiobookDuration) {
+        this.audiobookDuration = audiobookDuration;
     }
 }

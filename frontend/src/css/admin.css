@@ -1,0 +1,73 @@
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #AE0143;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.content-admin {
+    padding-top: 100px;
+}
+
+#admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  #admin-table th, #admin-table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #admin-table th {
+    background-color: #f3f3f3;
+  }
+  
+  #admin-table td {
+    vertical-align: middle;
+  }
+  
+  #admin-table .user-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  #admin-table select {
+    /* padding: 5px;
+    margin-right: 10px; */
+
+    width: 100%; /* Adjust width to be full within the form */
+    padding: 5px;
+    border: 2px solid #C8C8C8; /* Border for the inputs */
+    border-radius: 100px; /* Rounded corners for inputs */
+    background: #FFFFFF; /* Light background for inputs */
+    height: auto;
+  }
+  
+  #admin-table .save-btn {
+    padding: 5px 10px;
+    background-color: #AE0143;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #AE0143;
+    font-weight: bold;
+  }
+  
+  #admin-table .save-btn:hover {
+    background-color: white;
+    color: #AE0143;
+    border: 1px solid #AE0143;
+  }
+  
+  @media (max-width: 768px) {
+    #admin-table th, #admin-table td {
+        padding: 8px;
+      }
+  }

@@ -7,4 +7,5 @@ import java.util.List;
 @Repository
 public interface VoiceModelRepository extends JpaRepository<VoiceModel, Long> {
     List<VoiceModel> findByUserId(Long userId);
+    VoiceModel findById(long id);
 }

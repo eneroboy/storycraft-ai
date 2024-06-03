@@ -316,7 +316,7 @@ const ListenPage = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('token'); // Pobierz token z localStorage
-        const audioPath = localStorage.getItem('voicemodel_path') || `${apiUrl}/data/audiobooks/red_riding_hood_329.mp3`;
+        const audioPath = localStorage.getItem('audiobook_file_path') || `${apiUrl}/data/audiobooks/red_riding_hood_329.mp3`;
 
         const audioElement = audioRef.current;
         const fetchAudio = async () => {
@@ -348,7 +348,8 @@ const ListenPage = () => {
         };
 
         setAudio(audioElement);
-        setDuration(parseInt(/_([0-9]+)\.mp3/.exec(audioPath)?.[1] || 0));
+        // setDuration(parseInt(/_([0-9]+)\.mp3/.exec(audioPath)?.[1] || 0));
+        setDuration(parseInt(localStorage.getItem('audiobook_duration')) || 329);
 
         document.getElementById("audiobook-title").textContent = bookDict.title;
         document.getElementById("audiobook-description").textContent = bookDict.description;
