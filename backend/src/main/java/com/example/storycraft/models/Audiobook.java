@@ -24,9 +24,6 @@ public class Audiobook {
     @JoinColumn(name = "voicemodel_id", nullable = false)
     private VoiceModel voicemodel;
 
-    @Column(name = "audiobook_duration", nullable = false)
-    private Integer audiobookDuration;
-
     @Column(name = "audiobook_file_path", nullable = false)
     private String audiobookFilePath;
 
@@ -48,10 +45,6 @@ public class Audiobook {
 
     public VoiceModel getVoicemodel() {
         return voicemodel;
-    }
-
-    public Integer getAudiobookDuration() {
-        return audiobookDuration;
     }
 
     public String getAudiobookFilePath() {
@@ -76,10 +69,6 @@ public class Audiobook {
 
     public void setVoicemodel(VoiceModel voicemodel) {
         this.voicemodel = voicemodel;
-    }
-
-    public void setAudiobookDuration(Integer audiobookDuration) {
-        this.audiobookDuration = audiobookDuration;
     }
 
     public void setAudiobookFilePath(String audiobookFilePath) {

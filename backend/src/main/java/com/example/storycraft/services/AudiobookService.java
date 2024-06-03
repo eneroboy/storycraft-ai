@@ -25,7 +25,6 @@ public class AudiobookService {
     public Audiobook updateAudiobook(Long id, Audiobook updatedAudiobook) {
         return audiobookRepository.findById(id).map(audiobook -> {
             audiobook.setVoicemodel(updatedAudiobook.getVoicemodel());
-            audiobook.setAudiobookDuration(updatedAudiobook.getAudiobookDuration());
             audiobook.setUser(updatedAudiobook.getUser());
             audiobook.setBook(updatedAudiobook.getBook());
             audiobook.setAudiobookFilePath(updatedAudiobook.getAudiobookFilePath());

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import '../css/record_voice.css';
 import { useParams } from 'react-router-dom';
+import audioBufferToWav from 'audiobuffer-to-wav';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -137,14 +138,25 @@ const RecordPage = () => {
     }
   };
 
+  const convertToWav = async (blob) => {
+    const audioContext = new AudioContext();
+    const arrayBuffer = await blob.arrayBuffer();
+    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    const wavBuffer = audioBufferToWav(audioBuffer);
+    const wavBlob = new Blob([wavBuffer], { type: 'audio/wav' });
+
+    return { wavBlob, duration: audioBuffer.duration };
+  };
+
   const saveRecording = async () => {
     const userId = getUserIdFromToken(localStorage.getItem('token'));
-    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+    const { wavBlob, duration } = await convertToWav(audioBlob); // Konwersja do formatu WAV
     const formData = new FormData();
     formData.append('userId', userId);
-    formData.append('audio', audioBlob, 'recording.wav');
-    formData.append('length', audioBlob.size);
-    formData.append('duration', elapsedTime / 1000);
+    formData.append('audio', wavBlob, 'recording.wav');
+    formData.append('length', wavBlob.size);
+    formData.append('duration', duration);
     formData.append('language', 'English');
     formData.append('text', text);
     formData.append('number_of_words', text.split(' ').length);

@@ -8,6 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +19,6 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/records")
@@ -39,7 +42,7 @@ public class RecordController {
             try {
 
                 String fileNameExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-                String fileName = UUID.randomUUID().toString() + fileNameExtension;
+                String fileName = System.currentTimeMillis() + fileNameExtension;
                 System.out.println(fileName);
                 Path path = Paths.get("./backend/records/" + fileName);
                 Files.copy(file.getInputStream(), path);
@@ -63,6 +66,7 @@ public class RecordController {
                 return ResponseEntity.badRequest().body(Collections.singletonMap("success", false));
             }
         }
+
 
         @GetMapping("/{id}")
         public ResponseEntity<?> getRecordById(@PathVariable int id) {

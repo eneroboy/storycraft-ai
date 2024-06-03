@@ -15,6 +15,7 @@ import AddPage from "./components/AddPage";
 import RecordPage from "./components/RecordPage";
 import AddVoiceModelPage from "./components/AddVoiceModelPage";
 import AddSuccessfulPage from "./components/AddSuccessfulPage";
+import NotificationPopup from "./components/NotificationPopup";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <Route path="home" element={<HomePage />} />
                 <Route path="/*" element={
                 <MainLayout>
+                  <NotificationPopup />
                   <Routes>
                     <Route path="books" element={
                       <ProtectedRoute>
